@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Gallery</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Alpine.js for simple interactivity (optional but nice) -->
+    <script src="https://unpkg.com/alpinejs" defer></script>
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+    <!-- Header -->
+    <header class="bg-white shadow-lg">
+        <div class="container mx-auto flex justify-between items-center p-4">
+            <h1 class="text-3xl font-bold text-blue-600">Our Family Moments</h1>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="#" class="hover:text-blue-500">Home</a></li>
+                    <li><a href="#gallery" class="hover:text-blue-500">Gallery</a></li>
+                    <li><a href="#about" class="hover:text-blue-500">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative bg-blue-100 h-[60vh] flex items-center justify-center">
+        <div class="text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4">Welcome to Our Family Gallery</h2>
+            <p class="text-lg">Cherishing memories, sharing smiles.</p>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-12">
+        <div class="container mx-auto px-4">
+            <h3 class="text-3xl font-semibold text-center mb-8">Gallery</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <!-- Gallery Items -->
+                <template x-for="n in 6" :key="n">
+                    <div class="overflow-hidden rounded-lg shadow-lg hover:scale-105 transform transition">
+                        <img :src="`https://source.unsplash.com/400x300/?family,${n}`" alt="Family Photo" class="w-full h-60 object-cover">
+                    </div>
+                </template>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="bg-white py-12">
+        <div class="container mx-auto px-4 text-center">
+            <h3 class="text-3xl font-semibold mb-4">About Us</h3>
+            <p class="text-gray-600 max-w-2xl mx-auto">We are a close-knit family who loves capturing special moments. Here, we share memories that make us laugh, cry, and celebrate life together.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-blue-600 text-white py-6 mt-10">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2025 Our Family. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- AlpineJS Setup -->
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('gallery', () => ({
+                images: Array.from({ length: 6 }, (_, i) => i + 1)
+            }))
+        })
+    </script>
+</body>
+
+</html>
